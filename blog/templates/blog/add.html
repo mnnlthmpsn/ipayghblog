@@ -1,0 +1,22 @@
+{% extends '../base.html' %}
+
+{% block body %}
+<div class="container d-flex d-lg-flex flex-column justify-content-center align-items-lg-center">
+    <h3 style="margin-top: 50px;">Add Blog</h3>
+    <form action="{% url 'blog:add' %}" method="POST">
+        {%  csrf_token %}
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Blog title">
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label><br>
+            <textarea name="content" id="content"></textarea>
+            <script>
+                CKEDITOR.replace('content');
+            </script>
+        </div>
+        <button type="submit" class="btn" style="background-color: #022e6f !important; color: white;">Add</button>
+    </form>
+</div>
+{% endblock %}

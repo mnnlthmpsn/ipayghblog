@@ -1,0 +1,28 @@
+{% extends '../base.html' %}
+
+{% block body %}
+{% if blog %}
+<div class="container d-flex d-lg-flex flex-column justify-content-center align-items-lg-center">
+    <h3 style="margin-top: 50px;">{{ blog.title }}</h3>
+    <p>{% autoescape off %}{{ blog.content }}{% endautoescape %}</p>
+
+    <div class="btn-group" role="group" aria-label="button-group">
+        <!-- previous -->
+        {% if blog.get_previous_by_pub_date %}
+        <button class="btn" style="background-color: #022e6f !important;"><a
+                style="color: white; text-decoration: none;"
+                href="{% url 'blog:detail'  blog.get_previous_by_pub_date.id %}"><i class="fa fa-backward"></i>
+                {{ blog.get_previous_by_pub_date }}</a></button>
+        {% endif %}
+
+        <!-- next -->
+        {% if blog.get_next_by_pub_date %}
+        <button class="btn" style="background-color: #022e6f !important; margin-left: 50px;" ><a
+                style="color: white; text-decoration: none;"
+                href="{% url 'blog:detail'  blog.get_next_by_pub_date.id %}"> {{ blog.get_next_by_pub_date }} <i
+                    class="fa fa-forward"></i></a></button>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

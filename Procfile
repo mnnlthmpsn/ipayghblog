@@ -1,0 +1,1 @@
+web: gunicorn ipaygh.wsgi --log-file -

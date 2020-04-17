@@ -1,0 +1,19 @@
+{% extends '../base.html' %}
+
+{% block body %}
+<div class="container d-flex d-lg-flex flex-column justify-content-center align-items-lg-center">
+    <h3 style="margin-top: 20px">{{ blog.title }}</h3>
+    <hr width="20%">
+    <p>
+        {% autoescape off %}
+        {{ blog.content }}
+        {% endautoescape %}
+    </p>
+    <div class="btn-group" role="group" aria-label="button-group">
+        <button type="button" class="btn" style="background-color: #022e6f !important;"><a style="color: white; text-decoration: none;" href="{% url 'blog:update' blog.id %}">Update</a></button>
+        <button type="button" class="btn btn-danger" style="margin-left: 20px"><a style="color: white; text-decoration: none;" href="{% url 'blog:delete' blog.id %}">Delete</a></button>
+    </div>
+</div>
+
+
+{% endblock %}

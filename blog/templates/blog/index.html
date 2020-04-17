@@ -1,0 +1,23 @@
+{% extends '../base.html' %}
+
+{% block body %}
+<h1 style="margin-top: 40px; text-align: center;">Welcome to iPayGH Blog</h1>
+<hr style="width: 20%;height: 2px;">
+{% if blogs %}
+{% for blog in blogs %}
+
+<div class="container d-flex d-lg-flex flex-column justify-content-center align-items-lg-center">
+
+    <h3>{{ blog.title }}</h3>
+    <a href="{% url 'blog:detail' blog.id %}" style="text-decoration: none;">
+        Read
+    </a>
+    <hr style="color: #022e6f;width: 10%;height: 2px;">
+</div>
+
+{% endfor %}
+{% else %}
+<p>No blogs to show</p>
+{% endif %}
+
+{% endblock %}
