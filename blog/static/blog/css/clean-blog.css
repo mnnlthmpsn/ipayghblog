@@ -7,7 +7,7 @@
 body {
   font-size: 20px;
   color: #212529;
-  font-family: 'Lora', serif;
+  font-family: 'Lora', 'Times New Roman', serif;
 }
 
 p {
@@ -18,6 +18,7 @@ p {
 p a {
   text-decoration: underline;
 }
+
 
 h1,
 h2,
@@ -128,7 +129,7 @@ img::-moz-selection {
   }
   #mainNav .navbar-nav > li.nav-item > a {
     padding: 10px 20px;
-    color: #022e6f !important;
+    color: #fff;
   }
   #mainNav .navbar-nav > li.nav-item > a:focus, #mainNav .navbar-nav > li.nav-item > a:hover {
     color: rgba(255, 255, 255, 0.8);
