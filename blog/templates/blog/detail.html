@@ -2,27 +2,49 @@
 
 {% block body %}
 {% if blog %}
-<div class="container d-flex d-lg-flex flex-column justify-content-center align-items-lg-center">
-    <h3 style="margin-top: 50px;">{{ blog.title }}</h3>
-    <p>{% autoescape off %}{{ blog.content }}{% endautoescape %}</p>
 
-    <div class="btn-group" role="group" aria-label="button-group">
-        <!-- previous -->
-        {% if blog.get_previous_by_pub_date %}
-        <button class="btn" style="background-color: #022e6f !important;"><a
-                style="color: white; text-decoration: none;"
-                href="{% url 'blog:detail'  blog.get_previous_by_pub_date.id %}"><i class="fa fa-backward"></i>
-                {{ blog.get_previous_by_pub_date }}</a></button>
-        {% endif %}
+<header class="masthead" style="background-color: #022e6f;">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>{{blog.title}}</h1>
+                    <span class="meta">Posted by
+                        <a href="#"><strong>iPayGH</strong></a>
+                        on {{ blog.pub_date }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
 
-        <!-- next -->
-        {% if blog.get_next_by_pub_date %}
-        <button class="btn" style="background-color: #022e6f !important; margin-left: 50px;" ><a
-                style="color: white; text-decoration: none;"
-                href="{% url 'blog:detail'  blog.get_next_by_pub_date.id %}"> {{ blog.get_next_by_pub_date }} <i
-                    class="fa fa-forward"></i></a></button>
+<article>
+    <div class="container">
+        <div class="row" style="margin-bottom: 50px;">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <p>{% autoescape off %}{{ blog.content }}{% endautoescape %}</p>
+            </div>
+        </div>
+        <!-- Pager previous-->
+        <div class="d-flex flex-row justify-content-between" style="margin-bottom: 100px;">
+            {% if blog.get_previous_by_pub_date %}
+            <div class="clearfix">
+                <a class="btn btn-primary" href="{% url 'blog:detail'  blog.get_previous_by_pub_date.id %}"
+                    style='background-color: #022e6f !important;'>&larr;{{ blog.get_previous_by_pub_date }}</a>
+            </div>
+            {% endif %}
+
+            <!-- Pager next-->
+            {% if blog.get_next_by_pub_date %}
+            <div class="clearfix">
+                <a class="btn btn-primary" href="{% url 'blog:detail'  blog.get_next_by_pub_date.id %}"
+                    style='background-color: #022e6f !important;'>{{ blog.get_next_by_pub_date }} &rarr;</a>
+            </div>
+        </div>
         {% endif %}
     </div>
-</div>
+</article>
+
 {% endif %}
 {% endblock %}

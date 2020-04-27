@@ -1,22 +1,39 @@
 {% extends '../base.html' %}
 
 {% block body %}
-<div class="container d-flex d-lg-flex flex-column justify-content-center align-items-lg-center">
-    <h3 style="margin-top: 50px;">Update Blog</h3>
-    <form action="{% url 'blog:update' blog.id %}" method="POST">
-        {%  csrf_token %}
-        <div class="form-group">
-            <label for="username">Title</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Enter Username" value="{{ blog.title }}">
+<header class="masthead" style="background-color: #022e6f">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Update Blog</h1>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="content">Content</label><br>
-            <textarea name="content">{{ blog.content }}</textarea>
-            <script>
-                CKEDITOR.replace('content');
-            </script>
+    </div>
+</header>
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h3 style="margin-top: 50px;">Add Blog</h3>
+            <form action="{% url 'blog:update' blog.id %}" method="POST">
+                {%  csrf_token %}
+                <div class="form-group">
+                    <label for="username">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Username" value="{{ blog.title }}">
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label><br>
+                    <textarea name="content">{{ blog.content }}</textarea>
+                    <script>
+                        CKEDITOR.replace('content');
+                    </script>
+                </div>
+                <button type="submit" class="btn" style="background-color: #022e6f !important; color: white;">Update</button>
+            </form>
         </div>
-        <button type="submit" class="btn" style="background-color: #022e6f !important; color: white;">Update</button>
-    </form>
+    </div>
 </div>
 {% endblock %}
