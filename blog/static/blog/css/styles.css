@@ -1,0 +1,19 @@
+header {
+    height: 80vh;
+    text-align: center;
+    background-color: rgb(0,51,153);
+}
+
+.site-heading {
+    margin-top: 30vh;
+    color: white;
+}
+
+.post-heading {
+    color: white;
+    margin-top: 40vh;
+}
+
+.logo {
+    width: 30%;
+}

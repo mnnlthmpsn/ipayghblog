@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.core.paginator import Paginator
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .models import Blog
@@ -9,7 +10,10 @@ from .models import Blog
 def index(request):
     # all blogs logic here
     blogs = get_list_or_404(Blog)
-    return render(request, 'blog/index.html', {'blogs': blogs})
+    paginator = Paginator(blogs, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'blog/index.html', {'page_obj': page_obj})
 
 def blog_detail(request, blog_id):
     # blog detail here
@@ -44,7 +48,9 @@ def add_blog(request):
     if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        blog = Blog.objects.create(title=title, content=content)
+        description = request.POST['description']
+        image = request.POST['image']
+        blog = Blog.objects.create(title=title, description=description, content=content, image=image)
         return HttpResponseRedirect(reverse('blog:admin_dashboard'),)
     return render(request, 'blog/add.html')
 
@@ -53,6 +59,8 @@ def update_blog(request, blog_id):
     blog = get_object_or_404(Blog, pk=blog_id)
     if request.method == 'POST':
         blog.title = request.POST['title']
+        blog.description = request.POST['description']
+        blog.image = request.POST['image']
         blog.content = request.POST['content']
         blog.save()
         return HttpResponseRedirect(reverse('blog:admin_dashboard'),)

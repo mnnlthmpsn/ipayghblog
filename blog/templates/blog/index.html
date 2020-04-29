@@ -3,52 +3,97 @@
 
 {% block body %}
 <!-- Page Header -->
-<header class="masthead" style="background-color: #022e6f">
-    <div class="overlay"></div>
+<header id="landing" style="margin-bottom: 100px;">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-lg-4 col-md-10 col-sm-24 mx-auto">
                 <div class="site-heading">
-                    <h1>iPayGH</h1>
-                    <span class="subheading">Welcome to our Blog</span>
+                    <h3 class="mb-5" style="color: white;">Welcome to iPayGH Blog</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter Email">
+                        </div>
+                        <button class="btn btn-primary"
+                            style="background-color: white !important; border: 1px solid white !important; color: black !important;">
+                            Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-
 <!-- Main Content -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-            {% if blogs %}
-            {% for blog in blogs %}
-            <div class="post-preview">
-                <a href="{% url 'blog:detail' blog.id %}">
-                    <h2 class="post-title">
-                        {{ blog.title }}
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by
-                    <a href="{% url 'blog:detail' blog.id %}">
-                        <strong>iPayGH</strong>
-                    </a>
-                    on {{ blog.pub_date }}</p>
+        <div class="col-md-24 mx-auto">
+            {% if page_obj %}
+            {% for blog in page_obj %}
+            <div class="container mx-auto" style="width: 90%; margin-bottom: 50px;">
+                <small class="mb-2 form-text text-muted">iPayGH | {{ blog.pub_date }}</small>
+                <div class="row w-100 p-3">
+                    <div class="col-md-4 mx-auto" style="height: 25vh">
+                        <div>
+                            <a style="text-decoration: none;" href="{% url 'blog:detail' blog.id %}">
+                                <img class="img-fluid" src="{{ blog.image }}" alt="image" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-8 mx-auto" style="height: 25vh">
+                        <div>
+                            <a style="text-decoration: none;" href="{% url 'blog:detail' blog.id %}">
+                                <h1>{{ blog.title }}</h1>
+                                <p>{{ blog.description }}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <hr>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No blogs to show</p>
+        {% endif %}
+    </div>
 
-            {% endfor %}
-            {% else %}
-            <p>No blogs to show</p>
+    <nav aria-label="Page navigation example" class="mb-5">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1" tabindex="-1">1</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">&larr;</i></a></li>
             {% endif %}
+            <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">&rarr;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="col-lg-8 col-md-10 col-sm-20 mx-auto">
+        <div class="border" style="margin-bottom: 100px; padding: 20px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 col-sm-24 mx-auto text-center">
+                        <h3 class="text-center" style="margin-top: 30px;">Subscribe to our Mails</h3>
+                        <div style="margin: 40px 0 50px 0;">
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" placeholder="Enter Email">
+                                </div>
+                                <button class="btn btn-primary"
+                                    style="background-color: rgb(0,15,153) !important;color: white !important;">
+                                    Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>
-<span class="d-flex justify-content-center" style="font-size: small;">visit www.ipaygh.com</span>
-
-<hr>
-
-
 
 {% endblock %}

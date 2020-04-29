@@ -1,7 +1,7 @@
 {% extends '../base.html' %}
 
 {% block body %}
-<header class="masthead" style="background-color: #022e6f">
+<header style="background-color: #022e6f; margin-bottom: 100px;">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -21,13 +21,13 @@
             {% if blogs %}
             {% for blog in blogs %}
             <div class="post-preview">
-                <a href="{% url 'blog:detail' blog.id %}">
+                <a style="text-decoration: none;" href="{% url 'blog:detail' blog.id %}">
                     <h2 class="post-title">
                         {{ blog.title }}
                     </h2>
                 </a>
                 <p class="post-meta">Posted by
-                    <a href="{% url 'blog:detail' blog.id %}">
+                    <a style="text-decoration: none;" href="{% url 'blog:detail' blog.id %}">
                         <strong>iPayGH</strong>
                     </a>
                     on {{ blog.pub_date }}</p>
