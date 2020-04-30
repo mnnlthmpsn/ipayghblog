@@ -8,10 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" type="image/png" href="{% static 'blog/img/favicon.ico' %}" />
 
     <title>iPayGH Blog</title>
     <!-- ckeditor -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -31,10 +34,11 @@
 
     <!-- Navigation -->
     {% if request.user.is_authenticated %}
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background-color: white !important;">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav"
+        style="background-color: white !important;">
         <div class="container">
-            <a class="navbar-brand" href="https://ipaygh.com"><img class="img-fluid logo" src="{% static 'blog/img/ipay.png' %}"
-                    alt="https://ipaygh.com" /></a>
+            <a class="navbar-brand" href="https://www.ipaygh.com"><img class="img-fluid logo"
+                    src="{% static 'blog/img/ipay.png' %}" alt="https://manage2.ipaygh.com/xmanage/get-started" /></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -44,19 +48,20 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" style='color: rgb(0,51,153) !important'
+                        <a class="nav-link" style='color: #003393 !important'
                             href="{% url 'blog:index' %}"><strong>Home</strong></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" style='color: rgb(0,51,153) !important'
+                        <a class="nav-link" style='color: #003393 !important'
                             href="{% url 'blog:admin_dashboard' %}"><strong>Dashboard</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style='color: rgb(0,51,153) !important' href="{% url 'blog:add' %}"><strong>Add Blog</strong></a>
+                        <a class="nav-link" style='color: #003393 !important' href="{% url 'blog:add' %}"><strong>Add
+                                Blog</strong></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" style='color: rgb(0,51,153) !important'
+                        <a class="nav-link" style='color: #003393 !important'
                             href="{% url 'blog:logout' %}"><strong>Logout</strong></a>
                     </li>
 
@@ -66,11 +71,10 @@
     </nav>
     {% else %}
     <nav class="navbar fixed-top" id="mainNav" style="background-color: white !important;">
-        <div class="container" >
-            <a class="navbar-brand" href="https://ipaygh.com"><img class="img-fluid logo"
-                    src="{% static 'blog/img/ipay.png' %}" alt="https://ipaygh.com" /></a>
-            <button class="btn btn-primary btn-sm"
-                style="background-color: rgb(0,51,153) !important;">Get Started</button>
+        <div class="container">
+            <a class="navbar-brand" href="https://www.ipaygh.com"><img class="img-fluid logo"
+                    src="{% static 'blog/img/ipay.png' %}" alt="https://www.ipaygh.com" /></a>
+            <button class="btn btn-primary btn-sm" style="background-color: #003393 !important;">GET STARTED</button>
         </div>
     </nav>
     {% endif %}
@@ -78,16 +82,36 @@
     {% endblock %}
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <p class="copyright text-muted text-center">Copyright &copy; Your Website 2019</p>
+        <div class="row"></div>
+        <div class="footer-btm pt-4">
+            <div class="col-lg-6 text-right">
+                <div class="copyright">
+                    &copy; Copyright iPayGH-2020
                 </div>
             </div>
+            <div class="col-lg-6 text-left">
+                <ul class="list-inline footer-socials">
+                    <li class="list-inline-item"><a href="https://web.facebook.com/iPayGhana/?_rdc=1&_rdr"><i
+                                class="fa fa-facebook mr-2"></i>Facebook</a></li>
+                    <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCeL8enn354X9qYkrA-PzZxw"><i
+                                class="fa fa-youtube mr-2"></i>Youtube</a></li>
+                    <li class="list-inline-item"><a href="https://www.instagram.com/ipayghana/?hl=en0"><i
+                                class="fa fa-instagram mr-2"></i>Instagram</a></li>
+                    <li class="list-inline-item"><a href="https://twitter.com/home"><i
+                                class="fa fa-twitter mr-2"></i>Twitter</a></li>
+            </div>
+        </div>
         </div>
     </footer>
-
-
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -3,14 +3,14 @@
 {% block body %}
 {% if blog %}
 
-<header style="background-color: #022e6f;">
+<header style="background-color: #003393;">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="post-heading">
                     <h1>{{blog.title}}</h1>
                     <span class="meta">Posted by
-                        <a href="#"><strong>iPayGH</strong></a>
+                        <a href="https://www.ipaygh.com/"><strong>iPayGH</strong></a>
                         on {{ blog.pub_date }}</span>
                 </div>
             </div>
@@ -30,7 +30,7 @@
             {% if blog.get_previous_by_pub_date %}
             <div class="clearfix">
                 <a class="btn btn-primary" href="{% url 'blog:detail'  blog.get_previous_by_pub_date.id %}"
-                    style='background-color: #022e6f !important;'>&larr;{{ blog.get_previous_by_pub_date }}</a>
+                    style='background-color: #003393 !important;'>&larr;{{ blog.get_previous_by_pub_date }}</a>
             </div>
             {% endif %}
 
@@ -38,7 +38,7 @@
             {% if blog.get_next_by_pub_date %}
             <div class="clearfix">
                 <a class="btn btn-primary" href="{% url 'blog:detail'  blog.get_next_by_pub_date.id %}"
-                    style='background-color: #022e6f !important;'>{{ blog.get_next_by_pub_date }} &rarr;</a>
+                    style='background-color: #003393 !important;'>{{ blog.get_next_by_pub_date }} &rarr;</a>
             </div>
         </div>
         {% endif %}
